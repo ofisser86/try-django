@@ -8,11 +8,11 @@ def home_page(request):
 
 
 def contact_page(request):
-    return render(request, 'index.html', {'title': "Contact page"})
+    return render(request, 'contact.html', {'title': "Contact page"})
 
 
 def about_page(request):
-    return render(request, 'index.html', {"title": "About page"})
+    return render(request, 'about.html', {"title": "About page"})
 
 
 
