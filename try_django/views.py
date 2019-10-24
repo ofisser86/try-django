@@ -5,7 +5,9 @@ from django.template.loader import get_template
 
 def home_page(request):
     title = "Hello Django"
-    context = {'title': title, 'my_list': [1, 2, 3, 4, 5]}
+    context = {'title': title}
+    if request.user.is_authenticated:
+        context = {'title': title, 'my_list': [1, 2, 3, 4, 5]}
     return render(request, 'index.html', context)
 
 
