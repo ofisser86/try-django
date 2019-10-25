@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from blog.views import (
-    blog_post_detail_page
+    blog_post_detail_page,
+    blog_post_list_view,
 
 )
 from .views import (
@@ -28,7 +29,8 @@ from .views import (
 
 urlpatterns = [
     path('', home_page, name='home'),
-    path('blog/<str:slug>/', blog_post_detail_page, name='blog'),
+    path('blog/', blog_post_list_view, name='blog'),
+    path('blog/<str:slug>/', blog_post_detail_page, name='blog_detail'),
     # re_path(r'^blog/(?P<post_id>\d+)/$', blog_post_detail_page, name='blog'),
     path('txt', render_txt),
     path('contact', contact_page),
