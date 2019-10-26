@@ -11,7 +11,7 @@ def blog_post_detail_page(request, slug):
     if queryset.count() != 1:
         raise Http404
     obj = queryset.first()
-    template_name = 'blog_post_detail_page.html'
+    template_name = 'blog_post_detail.html'
     context = {'object': obj}
     return render(request, template_name, context)
 
@@ -40,7 +40,7 @@ def blog_post_create_view(request):
 def blog_post_update_view(request, slug):
     obj = get_object_or_404(BlogPost, slug=slug)
     template_name = 'blog_post_update.html'
-    context = {'object': None, 'form': None}
+    context = {'object': obj, 'form': None}
     return render(request, template_name, context)
 
 
