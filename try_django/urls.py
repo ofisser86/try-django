@@ -39,7 +39,7 @@ urlpatterns = [
 
     # re_path(r'^blog/(?P<post_id>\d+)/$', blog_post_detail_page, name='blog'),
     path('txt', render_txt),
-    path('contact', contact_page),
+    path('contact', contact_page, name='contact'),
     path('about/', about_page),
     path('admin/', admin.site.urls),
 ]

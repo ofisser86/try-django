@@ -10,6 +10,7 @@ def home_page(request):
 
 
 def contact_page(request):
+    print(request.POST)
     return render(request, 'contact.html', {'title': "Contact page"})
 
 
