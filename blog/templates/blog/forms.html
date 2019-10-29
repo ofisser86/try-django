@@ -7,12 +7,9 @@
     {% endif %}
 
     <form method="post" action="."> {% csrf_token %}
-
         {{ form.as_p }}
-{#        <input type="text" name="full_name">#}
-{#        <input type="email" name="email">#}
-{#        <textarea name="content"></textarea>#}
         <button type="submit">Send</button>
     </form>
 
 {% endblock content %}
+</html>

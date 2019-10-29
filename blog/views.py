@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
+
 from .models import BlogPost
+
+# from .forms import BlogPostForm
+from .forms import BlogPostModelForm
 # Create your views here.
 
 
@@ -32,8 +36,22 @@ def blog_post_detail_view(request, slug):
 
 def blog_post_create_view(request):
     # Todo: Create form
-    template_name = 'blog/create.html'
-    context = {'form': None}
+    form = BlogPostModelForm(request.POST or None)
+    if form.is_valid():
+        print(form.cleaned_data)
+    # If use BlogPostForm  ---> obj = BlogPost.objects.create(**form.cleaned_data)
+        form.save()
+        # For data manipulate need to do:
+        # obj = form.save(commit=False)
+        # for example ---> obj.title = form.cleaned_data.get('title') + '0'  ==== add '0' to eac title
+
+    # Reinitialize form
+        form = BlogPostModelForm()
+    context = {
+        'title': "New post",
+        'form': form,
+    }
+    template_name = 'blog/forms.html'
     return render(request, template_name, context)
 
 

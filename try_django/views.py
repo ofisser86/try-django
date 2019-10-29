@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import get_template
 
+from .forms import ContactForm
+
 
 def home_page(request):
     title = "Hello Django"
@@ -12,8 +14,15 @@ def home_page(request):
 
 
 def contact_page(request):
-    print(request.POST)
-    return render(request, 'contact.html', {'title': "Contact page"})
+    form = ContactForm(request.POST or None)
+    if form.is_valid():
+        print(form.cleaned_data)
+        form = ContactForm()
+    context = {
+        'title': "Contact page",
+        'form': form,
+    }
+    return render(request, 'contact.html', context)
 
 
 def about_page(request):
