@@ -36,17 +36,19 @@ def blog_post_detail_view(request, slug):
     return render(request, template_name, context)
 
 
-# @staff_member_required
-@login_required  # use login_required(login='login.html') for redirect non-auth user to login page
+@staff_member_required
+# @login_required  # use login_required(login='login.html') for redirect non-auth user to login page
 def blog_post_create_view(request):
     form = BlogPostModelForm(request.POST or None)
     if form.is_valid():
         print(form.cleaned_data)
     # If use BlogPostForm  ---> obj = BlogPost.objects.create(**form.cleaned_data)
-        form.save()
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
         # For data manipulate need to do:
         # obj = form.save(commit=False)
-        # for example ---> obj.title = form.cleaned_data.get('title') + '0'  ==== add '0' to eac title
+        # for example ---> obj.title = form.cleaned_data.get('title') + '0'  ==== add '0' to the title
 
     # Reinitialize form
         form = BlogPostModelForm()
@@ -60,8 +62,11 @@ def blog_post_create_view(request):
 
 def blog_post_update_view(request, slug):
     obj = get_object_or_404(BlogPost, slug=slug)
-    template_name = 'blog/update.html'
-    context = {'object': obj, 'form': None}
+    template_name = 'blog/forms.html'
+    form = BlogPostModelForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+    context = {'form': form, 'title': f"Update {obj.title}"}
     return render(request, template_name, context)
 
 
