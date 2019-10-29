@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
@@ -34,8 +36,9 @@ def blog_post_detail_view(request, slug):
     return render(request, template_name, context)
 
 
+# @staff_member_required
+@login_required  # use login_required(login='login.html') for redirect non-auth user to login page
 def blog_post_create_view(request):
-    # Todo: Create form
     form = BlogPostModelForm(request.POST or None)
     if form.is_valid():
         print(form.cleaned_data)
