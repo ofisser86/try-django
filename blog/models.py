@@ -12,3 +12,15 @@ class BlogPost(models.Model):  # blogpost_set --> queryset posts for current use
     content = models.TextField(null=True, blank=True)
     # For slug in url instead id for readable reasons
     slug = models.SlugField(unique=True)
+
+    # This is Django convention, recommended for use
+    def get_absolute_url(self):
+        return f"{self.slug}"
+
+    # This is NOT Django convention, custom uses, not necessary
+    def get_edit_url(self):
+        return f"{self.get_absolute_url}/edit"
+
+    # This is NOT Django convention, custom uses, not necessary
+    def get_delete_url(self):
+        return f"{self.get_absolute_url}/delete"
