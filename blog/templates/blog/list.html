@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <ol>
+    <div class="card-group">
         {% for object in object_list %}
-            <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
+            {%  include 'blog/list-inline.html' with blog_post=object %}
         {% endfor %}
-    </ol>
+    </div>
 {% endblock %}

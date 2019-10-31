@@ -19,7 +19,7 @@ class BlogPost(models.Model):  # blogpost_set --> queryset posts for current use
 
     # This is NOT Django convention, custom uses, not necessary
     def get_edit_url(self):
-        return f"{self.get_absolute_url()}/edit"
+        return f"{self.slug}/edit"
 
     # This is NOT Django convention, custom uses, not necessary
     def get_delete_url(self):
