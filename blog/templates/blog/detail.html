@@ -3,11 +3,11 @@
 {% block content %}
     <h1>{{ object.title }}</h1>
     <p>{{ object.content }}</p>
-
+    <h2>{{request.user}}</h2>
     {% if request.user.is_authenticated %}
-        {% if request.user.is_stuff %}
-            <a href="{{ get_edit_url }}"> Edit</a>
-            <a href="{{ get_delete_url }}">Delete</a>
+        {% if request.user.is_staff %}
+            <a href="{{ object.get_edit_url }}"> Edit</a>
+            <a href="{{ object.get_delete_url }}">Delete</a>
         {% endif %}
     {% endif %}
 {% endblock %}
