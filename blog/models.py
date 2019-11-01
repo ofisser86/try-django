@@ -24,6 +24,7 @@ class BlogPostManager(models.Manager):
 # Create your models here.
 class BlogPost(models.Model):  # blogpost_set --> queryset posts for current user object
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
+    image = models.FileField(upload_to='image', null=True, blank=True)
     title = models.CharField(max_length=256)
     content = models.TextField(null=True, blank=True)
     # For slug in url instead id for readable reasons
