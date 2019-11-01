@@ -9,11 +9,12 @@ from .forms import ContactForm
 
 def home_page(request):
     title = "Welcome to try Django"
+    template_name = 'home.html'
     qs = BlogPost.objects.all()[:5]
     context = {'title': title, 'blog_list': qs}
     # if request.user.is_authenticated:
     #     context = {'title': title, 'my_list': [1, 2, 3, 4, 5]}
-    return render(request, 'home.html', context)
+    return render(request, template_name, context)
 
 
 def contact_page(request):

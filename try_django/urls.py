@@ -15,14 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from blog.views import (
-    blog_post_detail_page,
-    blog_post_list_view,
-    blog_post_create_view,
-    blog_post_update_view,
-    blog_post_delete_view,
-
-)
+from blog.views import blog_post_create_view
 from .views import (
         home_page,
         about_page,
@@ -33,9 +26,8 @@ from .views import (
 urlpatterns = [
     path('', home_page, name='home'),
 
-
-    path('blog-new/', blog_post_create_view, name='new-post'),
     path('blog/', include('blog.urls')),
+    path('blog-new/', blog_post_create_view, name='new-post'),
 
     # re_path(r'^blog/(?P<post_id>\d+)/$', blog_post_detail_page, name='blog'),
     path('txt', render_txt),
