@@ -23,12 +23,15 @@ from .views import (
         contact_page,
         render_txt
 )
+from searches.views import search_view
 
 urlpatterns = [
     path('', home_page, name='home'),
 
     path('blog/', include('blog.urls')),
     path('blog-new/', blog_post_create_view, name='new-post'),
+
+    path('search/', search_view),
 
     # re_path(r'^blog/(?P<post_id>\d+)/$', blog_post_detail_page, name='blog'),
     path('txt', render_txt),
