@@ -1,4 +1,4 @@
-[![Try Django 2.2 tutorial](try_django_2_2_share.jpg)]
+![Try Django 2.2 tutorial](try_django_2_2_share.jpg)
 ### Getting Started
 
 #### Requirements
